@@ -903,6 +903,10 @@ require('lazy').setup({
         styles = {
           comments = { italic = false }, -- Disable italics in comments
         },
+
+        on_highlights = function(highlights, colors)
+          highlights.Comment = { fg = '#BB3F3F', italic = false }
+        end,
       }
 
       -- Load the colorscheme here.
@@ -910,11 +914,6 @@ require('lazy').setup({
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'tokyonight-night'
     end,
-    opts = {
-      on_colors = function(colors)
-        colors.comment = colors.red
-      end,
-    },
   },
 
   -- Highlight todo, notes, etc in comments
