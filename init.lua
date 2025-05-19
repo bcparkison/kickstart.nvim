@@ -871,6 +871,19 @@ require('lazy').setup({
         default = { 'lsp', 'path', 'snippets', 'lazydev' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          lsp = {
+            transform_items = function(ctx, items)
+              for _, item in ipairs(items) do
+                if item.label and item.label:sub(1, 1) == '"' then
+                  item.label = item.label:sub(2)
+                end
+                if item.insertText and item.insertText:sub(1, 1) == '"' then
+                  item.insertText = item.insertText:sub(2)
+                end
+              end
+              return items
+            end,
+          },
         },
       },
 
